@@ -2,7 +2,7 @@ def snail(snail_map):
     
     snail_output = []
     dirc =1
-
+ 
     while snail_map:
         if dirc == 1:
             snail_output.extend(snail_map.pop(0))
