@@ -1,2 +1,3 @@
-# Codewar_practice
-Daily coding exercise at Codewar
+# Coding Practice
+
+Daily coding exercise at Codewar and Leetcode
