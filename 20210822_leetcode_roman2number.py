@@ -13,6 +13,8 @@
 # Output: 1994
 # Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
+# note: realized that there's no such thing as IIV to make 3. The same is true for X and C, in which case, the code could have been much simpler
+
 class Solution:
     def romanToInt(self, s: str) -> int:
         
@@ -37,5 +39,20 @@ class Solution:
                     
             output += roman[i]              
             # print(n, ':', i, output)
+            
+        return output
+
+    def romanToInt_simple(self, s: str) -> int:
+        
+        roman = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D':500, 'M':1000}        
+        output = 0
+        
+        for n,i in enumerate(s):
+            
+            if n != 0:                
+                if roman[s[n]] > roman[s[n-1]]:                    
+                    output -= roman[s[n-1]] * 2
+                    
+            output += roman[i]
             
         return output
