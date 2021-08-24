@@ -7,6 +7,8 @@
 # Time complexity : O(S) , where S is the sum of all characters in all strings.
 # Space complexity : O(1). We only used constant extra space.
 
+from types import List
+
 class Solution:
     #horizontal scanning
     def longestCommonPrefix(self, strs: List[str]) -> str:
