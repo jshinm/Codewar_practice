@@ -11,8 +11,8 @@ class Solution:
         start = 0
         
         for i, c in enumerate(s):
-            if c in used and start <= used[c]:
-                start = used[c] + 1
+            if c in used and start <= used[c]: #if the char has been encountered AND the char is located downstream
+                start = used[c] + 1 #new second pointer position is where the secondary index is at
             else:
                 max_length = max(max_length, i - start + 1)
 
