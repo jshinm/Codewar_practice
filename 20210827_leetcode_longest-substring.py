@@ -5,11 +5,11 @@
 # As long as the char has not been encountered, the max_length is updated according to `i - start(the last repeating character) + 1`
 
 class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:        
+    def lengthOfLongestSubstring(self, s: str) -> int:
         used = {}
         max_length = 0
         start = 0
-        
+
         for i, c in enumerate(s):
             if c in used and start <= used[c]: #if the char has been encountered AND the char is located downstream
                 start = used[c] + 1 #new second pointer position is where the secondary index is at
