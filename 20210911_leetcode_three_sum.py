@@ -14,7 +14,7 @@ class Solution:
 
         for i, ai in enumerate(nums):
             for j, aj in enumerate(nums[i+1:]):
-                for k, ak in enumerate(nums[i+1:][j+1:]):
+                for _, ak in enumerate(nums[i+1:][j+1:]):
                     if ai + aj + ak == 0:
                         for ans_i in ans:
                             temp = ans_i
