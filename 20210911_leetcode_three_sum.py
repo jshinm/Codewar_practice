@@ -35,15 +35,17 @@ class Solution:
         return ans
 
     #two pointer solution
+    #O(N^2)
+    #python sort is O(N log N)
     def threeSum_II(self, nums: List[int]) -> List[List[int]]:
         ans = []
         nums.sort()
 
         for i, ai in enumerate(nums[:-2]):
-            if i > 0 and ai == nums[i-1]:
+            if i > 0 and ai == nums[i-1]: #must check for duplicate AFTER otherwise j won't take the i+1 if a_i == a_i+1 (e.g -1, -1, 0, 1, 2)
                 continue
 
-            if ai > 0:
+            if ai > 0: #i must be greater than zero
                 break
 
             j = i + 1
@@ -51,7 +53,7 @@ class Solution:
 
             while(j < k):
 
-                if nums[k] < 0:
+                if nums[k] < 0: #k must be less than zero
                     break
 
                 temp_sum = ai + nums[j] + nums[k]
@@ -63,12 +65,13 @@ class Solution:
                 else:
                     ans.append([ai, nums[j], nums[k]])
 
-                    while (j < k and nums[j] == nums[j+1]): 
-                        j += 1 
+                    while (j < k and nums[j] == nums[j+1]): #checking for duplicates since for a given a_i and a_k, there only exist one solution
+                        j += 1
 
-                    while (j < k and nums[k] == nums[k-1]): 
+                    while (j < k and nums[k] == nums[k-1]): #likewise, there exist only one a_k for a given a_i and a_j
                         k -= 1
 
+                    # only AFTER checking for duplicate can the pointers proceed
                     j += 1
                     k -= 1
 
