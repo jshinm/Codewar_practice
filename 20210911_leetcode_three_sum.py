@@ -6,7 +6,7 @@
 from typing import List
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum_I(self, nums: List[int]) -> List[List[int]]:
         #brute force
         #O(N^3)
         ans = []
@@ -22,7 +22,7 @@ class Solution:
 
                             temp.sort()
                             temp2.sort()
-                            
+
                             if temp == temp2:
                                 duplicate = True
                                 break
@@ -31,5 +31,45 @@ class Solution:
                             duplicate = False
                         else:
                             ans.append([ai,aj,ak])
+
+        return ans
+
+    #two pointer solution
+    def threeSum_II(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+        nums.sort()
+
+        for i, ai in enumerate(nums[:-2]):
+            if i > 0 and ai == nums[i-1]:
+                continue
+
+            if ai > 0:
+                break
+
+            j = i + 1
+            k = len(nums) - 1
+
+            while(j < k):
+
+                if nums[k] < 0:
+                    break
+
+                temp_sum = ai + nums[j] + nums[k]
+
+                if temp_sum < 0:
+                    j += 1
+                elif temp_sum > 0:
+                    k -= 1
+                else:
+                    ans.append([ai, nums[j], nums[k]])
+
+                    while (j < k and nums[j] == nums[j+1]): 
+                        j += 1 
+
+                    while (j < k and nums[k] == nums[k-1]): 
+                        k -= 1
+
+                    j += 1
+                    k -= 1
 
         return ans
