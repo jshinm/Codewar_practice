@@ -43,7 +43,7 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEnd_I(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         #recursive method - shifting value
         def search(node):
             if node == None: #the last node index is 0
@@ -61,3 +61,16 @@ class Solution:
         search(head)
 
         return head.next #the first val duplicate is removed
+        
+    def removeNthFromEnd_II(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        #recursive method - removing a target node
+        def remove(node):
+            
+            if node == None:
+                return 0, node
+            
+            i, node.next = remove(node.next) #assigning node.next to node.next (n+1 to n+1)
+            return i+1, (node, node.next)[i+1 == n] #conditional return at nth node assigning 
+                                                    #node.next to node.next.next (n+2 to n+1) 
+            
+        return remove(head)[1] #returning the class
