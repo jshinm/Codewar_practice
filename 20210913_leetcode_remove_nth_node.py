@@ -18,3 +18,10 @@ def fibonacci(n):
     return fibonacci(n-1) + fibonacci(n-2) #nth number is n-1th number + n-2th number, both of which can be found recursively
 
 print(fibonacci(5)) #0 1 1 2 3
+
+def subsequent_add(n):
+    if n == 0:
+        return 0 + 1
+    return subsequent_add(n-1) + 1 # func(0)[which returns 0 + 1] + 1 + 1 + 1 + 1 + 1, each +1 comes from each recursion
+
+print(subsequent_add(5))
