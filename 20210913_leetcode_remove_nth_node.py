@@ -80,10 +80,13 @@ class Solution:
         fast = slow = head #initialize two pointers
 
         if head.next == None: #edge case when 1 or 0 lenth is passed
-            return head
+            return head.next
 
         for _ in range(n): #move forward pointer n steps away from the behind pointer
             fast = fast.next
+
+        if fast == None: #for edge case when length is 2 and n is 1
+            return head.next #simply return the second item in the list
 
         while (fast.next != None): #move two pointers until the forward reaches the end
             fast = fast.next
