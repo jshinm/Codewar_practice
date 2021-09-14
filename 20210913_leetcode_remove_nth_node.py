@@ -25,3 +25,11 @@ def subsequent_add(n):
     return subsequent_add(n-1) + 1 # func(0)[which returns 0 + 1] + 1 + 1 + 1 + 1 + 1, each +1 comes from each recursion
 
 print(subsequent_add(5))
+
+def addnum_lst(n):
+    #embed 0 within n dimension list
+    if n == 0:
+        return 0
+    return [addnum_lst(n-1)]
+
+print(addnum_lst(5))
