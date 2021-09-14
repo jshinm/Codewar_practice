@@ -41,23 +41,23 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-        
+
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         #recursive method - shifting value
         def search(node):
             if node == None: #the last node index is 0
                 return 0
-            
+
             i = search(node.next) + 1 #index starts from 1
             # func(n) dissolved into first condtional which returns 0 at the end
             # sequence obtained from adding 1 into i when returning
-            
+
             if i > n: 
                 node.next.val = node.val #shifting nth val into n+1th val, thus the first val is a duplicate
-            
+
             return i
-        
+
         search(head)
-        
+
         return head.next #the first val duplicate is removed
