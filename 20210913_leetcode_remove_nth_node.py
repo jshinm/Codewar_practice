@@ -74,3 +74,20 @@ class Solution:
                                                     #node.next to node.next.next (n+2 to n+1) 
 
         return remove(head)[1] #returning the class
+
+#testing pointer concept in python
+class Test:
+    def __init__(self):
+        self.value = 0
+
+#objects assigned to a value is working as a pointer
+tester = Test()
+pointer1 = pointer2 = tester
+pointer1.value = 2
+print(tester.value)
+
+#value assigned to a value creates another value of the same value
+i = 2
+pa = pb = i
+pa = 3
+print(i)
