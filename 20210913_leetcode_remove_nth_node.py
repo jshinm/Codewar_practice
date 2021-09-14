@@ -75,6 +75,24 @@ class Solution:
 
         return remove(head)[1] #returning the class
 
+    def removeNthFromEnd_III(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        #two pointer method
+        fast = slow = head #initialize two pointers
+
+        if head.next == None: #edge case when 1 or 0 lenth is passed
+            return head
+
+        for _ in range(n): #move forward pointer n steps away from the behind pointer
+            fast = fast.next
+
+        while (fast.next != None): #move two pointers until the forward reaches the end
+            fast = fast.next
+            slow = slow.next
+
+        slow.next = slow.next.next #move n+1th node to nth node
+
+        return head #returns manipulated object by two pointers
+
 #testing pointer concept in python
 class Test:
     def __init__(self):
