@@ -18,10 +18,34 @@
 # Both l1 and l2 are sorted in non-decreasing order.
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+
+from typing import Optional
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        pass
+        #recursive method
+        #TC:O(N)
+        temp = []
+
+        while l1:
+            temp.append(l1.val)
+            l1 = l1.next
+
+        while l2:
+            temp.append(l2.val)
+            l2 = l2.next
+
+        temp.sort(reverse=True) #reversed order since lst is popped from the end
+
+        def create_node(lst):
+            if lst != []:
+                return ListNode(val=lst.pop(), next=create_node(lst))
+            else:
+                return None
+
+        return create_node(temp)
