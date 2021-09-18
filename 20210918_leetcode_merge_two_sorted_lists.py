@@ -29,7 +29,7 @@ class ListNode:
 class Solution:
     def mergeTwoLists_I(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         #recursive method
-        #TC:O(N)
+        #TC:O(N * N log N => N^2)
         temp = []
 
         while l1:
