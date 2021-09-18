@@ -29,7 +29,7 @@
 class Solution:
     #hashmap solution
     #TC: O(N)
-    def isValid(self, s: str) -> bool:
+    def isValid_I(self, s: str) -> bool:
 
         dicts = {'{':'}', '[':']', '(':')'}
         lst = []
@@ -50,3 +50,21 @@ class Solution:
             return False
 
         return True
+
+    #reversed hashmap version
+    #TC: N(O)
+    def isValid_II(self, s: str) -> bool:
+        
+        dicts = {'}':'{', ']':'[', ')':'('} #reversed key:value pair
+        lst = []
+        
+        for char in s:
+            if char in dicts.values():
+                lst.append(char)
+            elif lst == [] or dicts[char] != lst.pop(): #given that s is only consisting of parenthesis the `lst` should not be empty when the sequence is properly ordered; otherwise, `lst` will have to be popped and popped list is not matching the hashmap value, then the ordering is incorrect, thus for these two cases, returning false
+                return False
+
+        if lst != []: #edge case when pair not found
+            return False
+            
+        return True #if all cases pass, return true
