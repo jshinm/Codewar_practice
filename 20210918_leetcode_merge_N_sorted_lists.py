@@ -34,7 +34,7 @@
 # The sum of lists[i].length won't exceed 10^4.
 
 # Definition for singly-linked list.
-from typing import Optional
+from typing import Optional, List
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -43,4 +43,23 @@ class ListNode:
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        pass
+        #list sort method followed by recursive linked-list creation
+        #O(N * N log N ~ N^2)
+        temp_list = []
+
+        for i in lists:
+            while i:
+                temp_list.append(i.val)
+                i = i.next
+
+        temp_list.sort(reverse=True)
+
+        def create_llst(lst):
+            if lst != []:
+                temp = ListNode(val=lst.pop(), next=create_llst(lst))
+
+                return temp
+            else:
+                return None
+
+        return create_llst(temp_list)
