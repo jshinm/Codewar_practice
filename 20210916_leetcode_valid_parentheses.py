@@ -57,7 +57,7 @@ class Solution:
         
         dicts = {'}':'{', ']':'[', ')':'('} #reversed key:value pair
         lst = []
-        
+
         for char in s:
             if char in dicts.values():
                 lst.append(char)
@@ -66,5 +66,5 @@ class Solution:
 
         if lst != []: #edge case when pair not found
             return False
-            
+
         return True #if all cases pass, return true
