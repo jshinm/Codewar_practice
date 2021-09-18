@@ -27,6 +27,8 @@
 # Output: true
 
 class Solution:
+    #hashmap solution
+    #TC: O(N)
     def isValid(self, s: str) -> bool:
 
         dicts = {'{':'}', '[':']', '(':')'}
