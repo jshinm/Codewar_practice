@@ -67,11 +67,12 @@ from typing import List
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         # backtrack solution
+        # TC, SC: O(2^N)
         ans = []
-        self.dfs(ans, candidates, [], target)
+        self.backtrack(ans, candidates, [], target)
         return ans
 
-    def dfs(self, lst, nums, tree, target):
+    def backtrack(self, lst, nums, tree, target):
 
         if target < 0: #preventing from going further recursion
             return
@@ -85,7 +86,7 @@ class Solution:
                 continue  # prunes sub-branches stemming from what should not have gone beyond the conditional 
                           # (e.g. [1,2,3,4], 6; at [1,2,3], there's no need to make recursion for [1,2,3,4], 
                           # this last round of recursion involves the most numbers, thus makes it faster to run)
-            self.dfs(lst, nums[i:], tree + [nums[i]], target - nums[i])
+            self.backtrack(lst, nums[i:], tree + [nums[i]], target - nums[i])
 
 sol = Solution()
 lst = sol.combinationSum([2, 3, 6, 7], 7)
