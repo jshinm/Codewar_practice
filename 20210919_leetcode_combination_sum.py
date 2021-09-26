@@ -1,10 +1,12 @@
-# Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
+# Given an array of distinct integers candidates and a target integer target,
+# return a list of all unique combinations of candidates where the chosen numbers sum to target.
+# You may return the combinations in any order.
 
-# The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
+# The same number may be chosen from candidates an unlimited number of times.
+# Two combinations are unique if the frequency of at least one of the chosen numbers is different.
 
 # It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
 
- 
 
 # Example 1:
 
@@ -30,7 +32,7 @@
 
 # Input: candidates = [1], target = 2
 # Output: [[1,1]]
- 
+
 
 # Constraints:
 
@@ -39,10 +41,39 @@
 # All elements of candidates are distinct.
 # 1 <= target <= 500
 
+# Time complexity is O(N^target) where N is a length of candidates array.
+# Space complexity is O(target).
+
+# This is worst case and without any optimization, like moving position forward and sorting to stop early.
+# Just assuming that each recursive step we go over all existing candidates, so base N.
+# And go as deep as target in our recursive calls (if candidates are close to 1), so power of target.
+# You can mention that this is worst case and optimizations can make time complexity a little better, for interview I think this should be enough.
+
 from typing import List
 
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        pass
+        # backtrack solution
+        ans = []
+        self.dfs(ans, candidates, [], target)
+        return ans
 
-print(sum([1,2]))
+    def dfs(self, lst, nums, tree, target):
+
+        if target < 0: #preventing from going further recursion
+            return
+
+        if target == 0:
+            lst.append(tree)
+            return
+
+        for i in range(len(nums)):
+            if nums[i] > target:  # prevent constructing a complete tree
+                continue  # prunes sub-branches stemming from what should not have gone beyond the conditional 
+                          # (e.g. [1,2,3,4], 6; at [1,2,3], there's no need to make recursion for [1,2,3,4], 
+                          # this last round of recursion involves the most numbers, thus makes it faster to run)
+            self.dfs(lst, nums[i:], tree + [nums[i]], target - nums[i])
+
+sol = Solution()
+lst = sol.combinationSum([2, 3, 6, 7], 7)
+print(lst)
