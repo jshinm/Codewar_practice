@@ -39,6 +39,10 @@
 # All elements of candidates are distinct.
 # 1 <= target <= 500
 
+from typing import List
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         pass
+
+print(sum([1,2]))
