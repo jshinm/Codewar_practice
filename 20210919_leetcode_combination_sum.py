@@ -88,6 +88,28 @@ class Solution:
                           # this last round of recursion involves the most numbers, thus makes it faster to run)
             self.backtrack(lst, nums[i:], tree + [nums[i]], target - nums[i])
 
+class Solution2:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        #dfs solution
+        def dfs(target, tree, start):
+
+            if target == 0:
+                lst.append(tree[:]) #tree[:] not tree
+                return
+
+            for i in range(start, len(candidates)):
+                if candidates[i] <= target:
+                    tree.append(candidates[i])
+                    dfs(target-candidates[i], tree, i) #duplicate allows thus i and not i+1
+                    tree.pop()
+                else:
+                    break #prevent further growth of tree
+
+        lst = []
+        candidates.sort()
+        dfs(target, [], 0)
+        return lst
+
 sol = Solution()
 lst = sol.combinationSum([2, 3, 6, 7], 7)
 print(lst)
