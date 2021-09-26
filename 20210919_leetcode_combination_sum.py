@@ -49,6 +49,19 @@
 # And go as deep as target in our recursive calls (if candidates are close to 1), so power of target.
 # You can mention that this is worst case and optimizations can make time complexity a little better, for interview I think this should be enough.
 
+# DFS vs backtracking
+# I think the difference is pruning of tree. Backtracking can stop (finish) searching certain branch by checking the given conditions 
+# (if the condition is not met). However, in DFS, you have to reach to the leaf node of the branch to figure out 
+# if the condition is met or not, so you cannot stop searching certain branch until you reach to its leaf nodes.
+
+# Difference 1:
+# DFS handles an explicit tree.While Backtracking handles an implicit tree
+
+# Difference 2:
+# Depth First Search is a special type of backtracking algorithmic design paradigm where the process of backtracking takes place in the leaf nodes. 
+# In case of backtracking,the algorithm also rejects the useless branch of the state-space tree.This is why DFS maintains the entire tree structure 
+# while Backtracking maintaines a pruned tree
+
 from typing import List
 
 class Solution:
