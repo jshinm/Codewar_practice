@@ -39,5 +39,10 @@ class Solution:
         #pythonic simple solution
         try:
             return nums.index(target)
-        except Exception:
+        except Exception as e:
+            print(e)
             return -1
+
+sol = Solution()
+val = sol.search([1,3,5,2,6,7], 4)
+print(val)
