@@ -30,6 +30,10 @@
 # 1 <= n <= 20
 # -1000 <= matrix[i][j] <= 1000
 
+# the common matrix rotation solutions are:
+# clockwise: vertical inverse then diagonal swap 
+# counter-clockwise: left-right inverse then diagonal swap
+
 from typing import List
 
 class Solution:
