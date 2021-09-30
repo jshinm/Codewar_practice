@@ -33,7 +33,7 @@
 from typing import List
 
 class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None:
+    def rotate_I(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
@@ -86,3 +86,18 @@ class Solution:
             
             dim -= 2 #matrix reduce by size of 2
             d += 1 #each movement towards inner matrix initiates at n+1
+
+    def rotate_II(self, matrix: List[List[int]]) -> None:
+        # vertical reverse followed by diagonal swap method
+        
+        n = len(matrix)
+        
+        #vertical reverse
+        for i in range(int(n/2)):
+            matrix[i], matrix[-(i+1)] = matrix[-(i+1)], matrix[i]
+        
+        #diagonal swap
+        for i in range(n):
+            for j in range(i, n):
+                if i != j: #no need to swap itself
+                    matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
