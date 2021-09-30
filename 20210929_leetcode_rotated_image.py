@@ -38,3 +38,51 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         
+        # rotate then move inward
+        # 6 -> 4 -> 2; matrix reduces by two as moving inward
+        
+        n = len(matrix)
+        
+        def turn(l, i, mat):
+            #l: top, left
+            #r: bottom, right
+            #i: left pointer
+            #j: right pointer
+            
+            r = -(l + 1)
+            j = -(i + 1)
+            
+            # right : mat[i][r]
+            # left : mat[j][l]
+            # top : mat[l][i]
+            # bottom : mat[r][j]
+            
+            #top to right
+            temp = mat[i][r] #temp <- right
+            mat[i][r] = mat[l][i] #right <- top
+            
+            #right to bottom
+            temp2 = mat[r][j]  #temp2 <- bottom
+            mat[r][j] = temp #bottom <- right
+            
+            #bottom to left
+            temp = mat[j][l] #temp <- left
+            mat[j][l] = temp2 #left <- bottom
+            
+            #left to top
+            mat[l][i] = temp #top <- left
+        
+        dim = n
+        d = 0
+        
+        while dim > 1: #condition for the inner most matrix
+            #n-d to move right column to left by one column
+            #starting from d moves left column to right by one column
+            #thus reducing matrix by 2
+            
+            for i in range(d, n-d-1): 
+                turn(d, i, matrix)
+                # print(d, i)
+            
+            dim -= 2 #matrix reduce by size of 2
+            d += 1 #each movement towards inner matrix initiates at n+1
