@@ -27,7 +27,7 @@
 from typing import List
 
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def groupAnagrams_I(self, strs: List[str]) -> List[List[str]]:
         #brute force solution
         #take each item sort to check their equality
         #then add to a new nested list
@@ -56,4 +56,15 @@ class Solution:
             ans.append(temp_lst)
 
         return ans
-
+        
+        def groupAnagrams_II(self, strs: List[str]) -> List[List[str]
+        
+        #hashmap solution
+        
+        ans = {}
+        
+        for i in strs:
+            temp = ''.join(sorted(tuple(i))) #unique ordered key
+            ans[temp] = ans.get(temp, []) + [i] #values of the same key falls under the same key
+            
+        return list(ans.values()) #output is a list
