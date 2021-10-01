@@ -57,10 +57,10 @@ class Solution:
 
         return ans
         
-        def groupAnagrams_II(self, strs: List[str]) -> List[List[str]
-        
+    def groupAnagrams_II(self, strs: List[str]) -> List[List[str]]:
+
         #hashmap solution
-        
+
         ans = {}
         
         for i in strs:
