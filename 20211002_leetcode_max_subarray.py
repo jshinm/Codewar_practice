@@ -65,3 +65,25 @@ class Solution:
             max_val = max(cur_val, max_val)
             
         return max_val
+
+    def maxSubArrayIII(self, nums: List[int]) -> int:
+        #no max method
+        #TC: O(N)
+               
+        max_val = nums[0]
+        cur_val = 0
+        
+        #if cur_val is negative, not worth it to start with neg number, thus reset every time
+        #but the max_val is still kept track of 
+        
+        for num in nums:
+            
+            cur_val += num
+            
+            if cur_val > max_val:
+                max_val = cur_val
+
+            if cur_val < 0:
+                cur_val = 0
+
+        return max_val
