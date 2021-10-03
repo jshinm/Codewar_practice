@@ -24,4 +24,43 @@
 # print("this is a debug message")
 
 def solution(N):
-    pass
+    # write your code in Python 3.6
+    # 1. binary translation
+    # 2. assess binary gaps
+    
+    #integer to binary conversion
+    #divide by 2 until quotient is 0
+    #the remainder in reverse order is binary for the integer
+    #e.g. 12 => 1100
+    #12 / 2 = 6 + 0
+    #6 / 2  = 3 + 0
+    #3 / 2  = 1 + 1
+    #1 / 2  = 0 + 1
+
+    ans = ''
+
+    while True: #binarization
+        temp = int(N % 2)
+        N = N / 2
+        ans += str(temp)
+
+        if N < 1:
+            break
+
+    ans = ans[::-1] #reversing remainer order
+    temp = 0
+    max_num = 0
+
+    if ans[0] == '0': #edge case
+        return 0
+
+    for i in ans: #O(N) search
+        
+        if i == '0': #if not closed by 1, then not applied to max_num
+            temp += 1
+        else:
+            if max_num < temp:
+                max_num = temp
+            temp = 0
+
+    return max_num
