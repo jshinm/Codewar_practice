@@ -30,7 +30,7 @@
 from typing import List
 
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
+    def maxSubArrayI(self, nums: List[int]) -> int:
         
         #brute force
         #TC: O(n^2)
@@ -45,3 +45,23 @@ class Solution:
                     max_num = temp
                     
         return max_num
+
+    def maxSubArrayII(self, nums: List[int]) -> int:
+        #double max method
+        #TC: O(N)
+               
+        max_val = cur_val = nums[0] 
+        #[10,-11,10] => rather restart at i = 2
+        #[1,2,-1,10] => -1 can be ignored
+        #[-10,10,10] => -10 is passed
+        #[9,-1,10]   => -1 is kept
+        #[9,-1,-1,-1]=> cur_val keeps all sequence, but max_val only keeps the 9
+        
+        #thus cur_val only evaluates whether sum up to ith is greater than the ith num
+        #as long as ith num is less than the sum up to ith sequence, sequence is kept        
+        
+        for num in nums[1:]:
+            cur_val = max(cur_val + num, num)
+            max_val = max(cur_val, max_val)
+            
+        return max_val
