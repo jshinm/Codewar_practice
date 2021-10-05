@@ -48,7 +48,7 @@ class Solution:
         elif n == 2:
             return 2
 
-        return self.climbStairs(n-1) + self.climbStairs(n-2)
+        return self.climbStairsI(n-1) + self.climbStairsI(n-2)
 
     def climbStairsII(self, n: int) -> int:
         #dynamic programming bottom-up approach
