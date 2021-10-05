@@ -41,10 +41,26 @@
 # this is basically the fibonacci sequence
 
 class Solution:
-    def climbStairs(self, n: int) -> int:
+    def climbStairsI(self, n: int) -> int:
+        #recursive top-down approach
         if n == 1:
             return 1
         elif n == 2:
             return 2
 
         return self.climbStairs(n-1) + self.climbStairs(n-2)
+
+    def climbStairsII(self, n: int) -> int:
+        #dynamic programming bottom-up approach
+        if n <= 2:
+            return n
+
+        ans = [0]
+        ans += [1]
+        ans += [2]
+
+        for i in range(3, n+1):
+            ans += [ans[i-1] + ans[i-2]]
+        
+        return ans[-1]
+
