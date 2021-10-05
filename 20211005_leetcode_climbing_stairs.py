@@ -42,22 +42,19 @@
 
 class Solution:
     def climbStairsI(self, n: int) -> int:
-        #recursive top-down approach
-        if n == 1:
-            return 1
-        elif n == 2:
-            return 2
+        #recursive top-down approach (TLE)
+        if n <= 2:
+            return n
 
         return self.climbStairsI(n-1) + self.climbStairsI(n-2)
 
     def climbStairsII(self, n: int) -> int:
         #dynamic programming bottom-up approach
+        #TC: O(N), SC: O(N)
         if n <= 2:
             return n
 
-        ans = [0]
-        ans += [1]
-        ans += [2]
+        ans = [i for i in range(3)]
 
         for i in range(3, n+1):
             ans += [ans[i-1] + ans[i-2]]
