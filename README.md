@@ -1,3 +1,3 @@
 # Coding Practice
 
-Daily coding exercise at Codewar and Leetcode
+Daily coding exercise from various platforms
