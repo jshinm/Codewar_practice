@@ -21,4 +21,29 @@
 
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        pass
+        
+        #pop first row
+        #pop last col
+        #pop last row
+        #pop first col
+
+        ans = []
+
+        try: 
+            while matrix != []:
+                temp = matrix.pop(0)#[:, 0]
+                ans += temp
+
+                for i, mat in enumerate(matrix):
+                    ans += [mat.pop(-1)]
+
+                temp = matrix.pop(-1)
+                ans += temp[::-1]
+
+                for i, mat in enumerate(matrix[::-1]):
+                    ans += [mat.pop(0)]
+                    
+        except Exception as e:
+            print(e)
+
+        return ans
