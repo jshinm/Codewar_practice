@@ -27,6 +27,8 @@ class Solution:
         #pop last row
         #pop first col
 
+        #O(N)
+
         ans = []
 
         try: 
