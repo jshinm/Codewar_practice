@@ -37,6 +37,7 @@ class Solution:
             return True
         
         #go backwards and see if there's a path
+        #TC: O(N)
         idx = len(nums)-1
         
         for i,n in enumerate(nums[-2::-1]): #starting from the second to the last in reverse
