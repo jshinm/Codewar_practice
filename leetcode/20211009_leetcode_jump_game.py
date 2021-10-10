@@ -22,13 +22,31 @@
 # 0 <= nums[i] <= 10^5
 
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
+    def canJump_I(self, nums: List[int]) -> bool:
         #each number at index i indicates the MAX jump, 
         #thus [3,2,1] can go, for instance, 3(1)-2(1)-1; 3(2)->1; 3, thus True
-        pass
 
-class Solution:
-    def canJump(self, nums: List[int]) -> bool:
+        #backtracing method
+        # [3,2,1,0]
+        # 3-0
+        # 2-1-0
+        # 1-2-0
+        # 1-1-1-0
+        
+        if len(nums) == 1: #single item is always true
+            return True
+        
+        #go backwards and see if there's a path
+        idx = len(nums)-1
+        
+        for i,n in enumerate(nums[-2::-1]): #starting from the second to the last in reverse
+            
+            temp_i = len(nums)-(i+2) #current index in forward direction
+            if temp_i + nums[temp_i] >= idx: 
+                idx = temp_i #update pointer 
+        return idx == 0 #the pointer must reach the first index
+
+    def canJump_extra(self, nums: List[int]) -> bool:
         #if the question were to indicate the consecutive jumps
         #while loop {run until reach the end OR reach zero that is not the last index}
         #[1,1,1,2] => True
@@ -39,7 +57,7 @@ class Solution:
         
         idx = 0
         
-        try:            
+        try:
             while True:
                 idx += nums[idx] #move to next index
                 
