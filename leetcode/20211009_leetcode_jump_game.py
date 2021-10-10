@@ -23,6 +23,12 @@
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
+        #each number at index i indicates the MAX jump, 
+        #thus [3,2,1] can go, for instance, 3(1)-2(1)-1; 3(2)->1; 3, thus True
+        pass
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
         #if the question were to indicate the consecutive jumps
         #while loop {run until reach the end OR reach zero that is not the last index}
         #[1,1,1,2] => True
