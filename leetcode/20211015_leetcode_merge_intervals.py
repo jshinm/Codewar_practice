@@ -25,7 +25,7 @@ class Solution:
         
         #if end_i >= start_i+1, then they overlaps
         #but must be sorted => O(nlog(n))
-        #TC: O(N)
+        #TC: O(N) of linear scan < O(N) of python list sort
         
         ans = []
         
