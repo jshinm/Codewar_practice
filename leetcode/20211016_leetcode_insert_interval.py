@@ -40,4 +40,41 @@
 
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        pass
+        #iterate over intervals and place the new list and if overlap conditions are met then merge
+        #the intervals is non-overlapping nested list
+        #iterate over intervals and place the new list and if overlap conditions are met then merge
+        #the intervals is non-overlapping nested list
+        #TC: O(N) - linear search only
+        
+        #alternatively, add newInt to the intervals, then sort (TC: n log n), followed by linear overlap search
+
+        #the following is the mix of linear search followed by sort, thus TC: n log n
+        
+        out = []
+        merge = None #temp storage for merging list
+        
+        if intervals == []: #edge case: empty
+            return [newInterval]
+        
+        for interval in intervals:
+
+            if interval[1] < newInterval[0] or interval[0] > newInterval[1]:
+                if merge:
+                    out.append(merge)
+                    merge = []
+                out.append(interval)
+            else:
+                newInterval = [min(interval[0], newInterval[0]),
+                                max(interval[1], newInterval[1])]
+                merge = newInterval
+                
+        if merge == []:
+            pass
+        elif merge == None:
+            out.append(newInterval)
+        else:
+            out.append(merge)
+            
+        out.sort(key=lambda x: x[0]) #TC: O(N log N)
+            
+        return out
