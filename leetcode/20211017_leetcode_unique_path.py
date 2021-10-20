@@ -37,4 +37,19 @@
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        pass
+        # backtrack solution (TLE)
+        # move col/row by 1
+        # win if reaches lower right cell
+        # every possible move will involve moving from every rows/cols recursively
+        
+        def backtrack(m: int, n: int, i: int, j: int):
+            if i == m or j == n:
+                return 0
+            if i == m-1 and j == n-1:
+                return 1
+            row = backtrack(m,n,i+1,j)
+            col = backtrack(m,n,i,j+1)
+            
+            return row+col
+        
+        return backtrack(m,n,0,0)
