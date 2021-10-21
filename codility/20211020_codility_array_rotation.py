@@ -40,4 +40,8 @@
 
 def solution(A, K):
     # write your code in Python 3.6
-    pass
+    if not A: #edge case for empty list
+        return A    
+    if K > len(A):
+        K = K % len(A)
+    return A[-K:] + A[:-K]
