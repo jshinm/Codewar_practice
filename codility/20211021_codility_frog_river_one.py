@@ -69,3 +69,25 @@ def solution(X, A):
         t = -1
 
     return t
+
+def solution(X, A):
+    # write your code in Python 3.6
+    # hashmap method - TC:O(N)
+
+    t = 0
+    leaf = {}
+
+    for i, n in enumerate(A): #linear search
+
+        if len(leaf) == X:
+            break
+
+        if n not in leaf.keys():
+            leaf[n] = i
+            if t < i: #update time
+                t = i
+    
+    if len(leaf) != X: #if unable to jump
+        t = -1
+
+    return t
