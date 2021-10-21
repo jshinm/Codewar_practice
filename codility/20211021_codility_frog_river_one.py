@@ -50,7 +50,7 @@ def solution(X, A):
     # search where all positions are occupied
     # make a list of increasing integer [1, X]
     # as searching, pop each integer and update time
-    # linear search - TC:O(N)
+    # linear search - TC:O(N^2) possibly due to reindexing and popping
 
     t = 0
     leaf = [i for i in range(1,X+1)]
