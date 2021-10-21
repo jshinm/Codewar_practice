@@ -30,4 +30,19 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # store value in the hashmap as keys
+    # each key must have even number
+    # return single key that its value is an odd number
+    # TC: O(N)
+
+    ans = {}
+
+    for i in A:
+        if i in ans:
+            ans[i] += 1
+        else:
+            ans[i] = 1
+
+    for i in ans.keys():
+        if ans[i] % 2 == 1:
+            return i
