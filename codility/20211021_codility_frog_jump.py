@@ -28,4 +28,6 @@
 
 def solution(X, Y, D):
     # write your code in Python 3.6
-    pass
+    # TC: O(1)
+    num = Y - X
+    return int(num / D) + (num % D > 0)
