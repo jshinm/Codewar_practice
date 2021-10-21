@@ -46,4 +46,26 @@
 
 def solution(X, A):
     # write your code in Python 3.6
-    pass
+    # there must be leaves falling on every position
+    # search where all positions are occupied
+    # make a list of increasing integer [1, X]
+    # as searching, pop each integer and update time
+    # linear search - TC:O(N)
+
+    t = 0
+    leaf = [i for i in range(1,X+1)]
+
+    for i, n in enumerate(A): #linear search
+
+        if not leaf: #if target all found, terminate loop
+            break
+
+        if n in leaf:
+            leaf.pop(leaf.index(n)) #remove target once found
+            if t < i: #update time
+                t = i
+    
+    if leaf: #if unable to jump
+        t = -1
+
+    return t
