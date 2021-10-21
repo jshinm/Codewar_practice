@@ -48,4 +48,18 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # linear check via hashmap - TC:O(N)
+
+    chk = {}
+
+    for i in A: #linear search
+        if i not in chk:
+            chk[i] = 1
+        else:
+            return 0 #duplicate returns 0
+    
+    for i in range(1, len(A)+1): #linear search
+        if i not in chk:
+            return 0
+    
+    return 1 #for all other cases return 1
