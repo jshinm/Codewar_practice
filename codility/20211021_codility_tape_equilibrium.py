@@ -44,4 +44,23 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # linear search N-1 splits
+    # if 0 found, terminate prematurely
+    # TC: O(N)
+
+    if not A: #edge case for empty list
+        return A
+    
+    out = abs(A[0] - sum(A[1:]))
+    
+    if len(A) == 2: #for N = 2
+        return out
+
+    for i in range(2, len(A)):
+        temp = abs(sum(A[:i]) - sum(A[i:]))
+        if temp < out:
+            out = temp
+        elif temp == 0: #terminate loop if found 0
+            return 0
+
+    return out
