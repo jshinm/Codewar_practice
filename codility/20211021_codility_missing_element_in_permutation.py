@@ -27,4 +27,14 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # iterate over the list with an increment of 1
+    # return missing value
+
+    if not A: #edge case for empty list
+        return 0
+
+    A.sort() #TC: O(n log n)
+
+    for i, n in enumerate(A[:-1]):
+        if n+1 != A[i+1]:
+            return n+1
