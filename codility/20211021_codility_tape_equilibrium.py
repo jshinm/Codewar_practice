@@ -46,7 +46,7 @@ def solution(A):
     # write your code in Python 3.6
     # linear search N-1 splits
     # if 0 found, terminate prematurely
-    # TC: O(N)
+    # TC: O(N*N) possibly due to splicing
 
     if not A: #edge case for empty list
         return A
