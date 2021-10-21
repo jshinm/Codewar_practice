@@ -33,9 +33,6 @@ def solution(A):
     if not A: #edge case for empty list
         return 1
 
-    if len(A) < 2:
-        return A[0]
-
     A.sort() #TC: O(n log n)
 
     for i, n in enumerate(A[:-1]):
