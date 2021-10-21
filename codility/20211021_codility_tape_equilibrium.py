@@ -64,3 +64,31 @@ def solution(A):
             return 0
 
     return out
+
+def solution(A):
+    # write your code in Python 3.6
+    # binary search
+    # if 0 found, terminate prematurely
+    # TC: O(N)
+
+    if not A: #edge case for empty list
+        return A
+    
+    l = A[0]
+    r = sum(A[1:])
+
+    out = abs(l - r)
+    
+    if len(A) == 2: #for N = 2
+        return out
+
+    for i in range(1, len(A)-1):
+        l += A[i]
+        r -= A[i]
+        temp = abs(l - r)
+        if temp < out:
+            out = temp
+        elif temp == 0: #terminate loop if found 0
+            return 0
+
+    return out
