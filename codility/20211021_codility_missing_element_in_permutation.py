@@ -31,10 +31,18 @@ def solution(A):
     # return missing value
 
     if not A: #edge case for empty list
-        return 0
+        return 1
+
+    if len(A) < 2:
+        return A[0]
 
     A.sort() #TC: O(n log n)
 
     for i, n in enumerate(A[:-1]):
         if n+1 != A[i+1]:
             return n+1
+
+    if max(A) == len(A): #edge case for the last missing item
+        return len(A)+1
+    
+    return 1 #edge case for the first missing
