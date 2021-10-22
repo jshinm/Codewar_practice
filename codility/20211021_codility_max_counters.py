@@ -59,7 +59,7 @@ def solution(N, A):
     # iterate len(A) times
     # the size of the out is N
     # max counter is broadcasting max(out) to out
-    # TC:O(N)
+    # TC:O(N*M); M possibly from list comprehension
 
     if not A:
         return A
@@ -68,7 +68,8 @@ def solution(N, A):
 
     for n in A:
         if n > N:
-            out = [max(out) for i in range(N)]
+            temp = max(out) #corrected for slight TC improvement
+            out = [temp for i in range(N)]
         else:
             out[n-1] += 1
 
