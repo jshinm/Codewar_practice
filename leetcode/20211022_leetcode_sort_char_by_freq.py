@@ -31,4 +31,20 @@
 
 class Solution:
     def frequencySort(self, s: str) -> str:
-        pass
+        #store freq of each char in the hashmap
+        #sort keys by hashmap values
+        #reproduce string from list comprehension
+        
+        dic = {}
+        
+        for i in s: #TC: O(N)
+            if i not in dic:
+                dic[i] = 1
+            else:
+                dic[i] += 1
+        
+        #TC: O(nlogn) -> sorted()
+        out = [i*j for i, j in sorted(dic.items(), key=lambda x: x[1], reverse=True)]
+        out = ''.join(out) #TC: O(N)
+        
+        return out
