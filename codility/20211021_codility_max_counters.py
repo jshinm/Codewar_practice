@@ -77,7 +77,7 @@ def solution(N, A):
 
 def solution(N, A):
     # search without explicit update of all item in the list
-    # TC: O(N)
+    # TC: O(N+M); for two for loops
 
     if not A:
         return A
