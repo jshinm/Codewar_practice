@@ -55,4 +55,21 @@
 
 def solution(N, A):
     # write your code in Python 3.6
-    pass
+    # brute force would be linear search and add counter to output list
+    # iterate len(A) times
+    # the size of the out is N
+    # max counter is broadcasting max(out) to out
+    # TC:O(N)
+
+    if not A:
+        return A
+
+    out = [0 for i in range(N)]
+
+    for n in A:
+        if n > N:
+            out = [max(out) for i in range(N)]
+        else:
+            out[n-1] += 1
+
+    return out
