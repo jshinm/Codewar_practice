@@ -74,3 +74,30 @@ def solution(N, A):
             out[n-1] += 1
 
     return out
+
+def solution(N, A):
+    # search without explicit update of all item in the list
+    # TC: O(N)
+
+    if not A:
+        return A
+
+    out = [0 for i in range(N)]
+    temp_max = 0
+    curr_max = 0
+
+    for n in A:
+        if n > N:
+            temp_max = curr_max #corrected so that max is only between two values in each iteration
+        else:
+            if out[n-1] < temp_max:
+                out[n-1] = temp_max #update individually
+
+            out[n-1] += 1
+            curr_max = max(curr_max, out[n-1])
+
+    for i in range(N):
+        if out[i] < temp_max:
+            out[i] = temp_max
+
+    return out
