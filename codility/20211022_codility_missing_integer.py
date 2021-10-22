@@ -22,4 +22,20 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # list to set, then quick sort TC: O(nlogn)
+    # linear search and return missing integer
+    
+    if not A:
+        return A
+
+    if A[0] < 1:
+        return 1
+
+    A = list(set(A))
+    A.sort() # O(nlogn)
+
+    for i in range(len(A)-1):
+        if A[i] != A[i+1]-1:
+            return A[i]+1
+
+    return A[-1] + 1
