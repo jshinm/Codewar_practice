@@ -28,13 +28,16 @@ def solution(A):
     if not A:
         return A
 
-    if A[0] < 1:
-        return 1
-
     A = list(set(A))
     A.sort() # O(nlogn)
 
+    if A[-1] < 1: #edge case for all negative
+        return 1
+
     for i in range(len(A)-1):
+        if A[i] < 1:
+            continue
+
         if A[i] != A[i+1]-1:
             return A[i]+1
 
