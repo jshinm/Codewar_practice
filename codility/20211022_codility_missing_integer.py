@@ -28,13 +28,16 @@ def solution(A):
     if not A:
         return A
 
+    if 1 not in A: #edge case if sequence not start from 1
+        return 1 #linear search TC: O(N)
+
     A = list(set(A))
     A.sort() # O(nlogn)
 
     if A[-1] < 1: #edge case for all negative
         return 1
 
-    for i in range(len(A)-1):
+    for i in range(len(A)-1): #linear search TC: O(N)
         if A[i] < 1:
             continue
 
