@@ -63,7 +63,7 @@ import sys
 
 def weightedMean(X, W):
     out = [i * j for i, j in zip (X, W)]
-    print (sum(out) / sum(W))
+    print (round(sum(out) / sum(W), 1))
 
 if __name__ == '__main__':
     n = int(input().strip())
