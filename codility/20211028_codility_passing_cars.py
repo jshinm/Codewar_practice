@@ -37,3 +37,29 @@
 # N is an integer within the range [1..100,000];
 # each element of array A is an integer that can have one of the following values: 0, 1.
 
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
+
+def solution(A):
+    # write your code in Python 3.6
+    # P travels to the east, Q travels to the west
+    # P = 0, Q = 1
+    # P < Q
+    # pair is (P, Q)
+    
+    # hashmap
+    # iterate only once in reverse
+    # temp list that counts Qs in reverse and add to the counter
+    # if P < Q, then P: Q_i, Q_i+1
+    # TC: O(N)
+
+    cnt = 0
+    tmp = []
+
+    for i in range(len(A)-1, -1, -1):
+        if A[i] == 0:
+            cnt += len(tmp)
+        elif A[i] == 1:
+            tmp.append(i)
+
+    return cnt
