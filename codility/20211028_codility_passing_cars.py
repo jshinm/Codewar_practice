@@ -59,7 +59,9 @@ def solution(A):
     for i in range(len(A)-1, -1, -1):
         if A[i] == 0:
             cnt += len(tmp)
-        elif A[i] == 1:
+        elif A[i] == 1 and len(tmp) <= 1000000:
             tmp.append(i)
+        else: 
+            return -1
 
     return cnt
