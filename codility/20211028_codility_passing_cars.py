@@ -47,20 +47,20 @@ def solution(A):
     # P < Q
     # pair is (P, Q)
     
-    # hashmap
+    # linear search in reverse
     # iterate only once in reverse
     # temp list that counts Qs in reverse and add to the counter
     # if P < Q, then P: Q_i, Q_i+1
     # TC: O(N)
 
     cnt = 0
-    tmp = []
+    tmp = 0
 
     for i in range(len(A)-1, -1, -1):
-        if A[i] == 0:
-            cnt += len(tmp)
-        elif A[i] == 1 and len(tmp) <= 1000000:
-            tmp.append(i)
+        if A[i] == 0 and cnt <= 1000000000:
+            cnt += tmp
+        elif A[i] == 1:
+            tmp += 1
         else: 
             return -1
 
