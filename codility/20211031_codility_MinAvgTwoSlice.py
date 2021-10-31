@@ -43,4 +43,17 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # The goal is to find the starting position of a slice whose average is minimal
+    # brute force is exaustive search which is O(N^2)
+    minN = sum(A)
+    idx = 0
+
+    for i in range(len(A)):
+        for j in range(i+1, len(A)):
+            tmp = sum(A[i:j+1])/(j-i)
+
+            if minN > tmp:
+                minN = tmp
+                idx = i
+
+    return idx
