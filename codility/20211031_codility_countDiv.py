@@ -25,20 +25,15 @@ def solution(A, B, K):
     r = 0
 
     for i in range(A,B+1):
-        if i == 0:
-            continue
         if i%K == 0:
             l = int(i/K)
             break
+        if i == B: #exit conditional
+            return 0
 
     for j in range(B,i-1,-1):
-        if i == 0:
-            continue
         if j%K == 0:
             r = int(j/K)
             break
-
-    if l == 0 and r == 0:
-        return 0
 
     return r-l+1
