@@ -15,4 +15,30 @@
 # A ≤ B.
 
 def solution(A, B, K):
-    pass
+    # find the multiples of K within the range
+    # 2 in [6, 11] => 3
+    # 3, 5 => 5 - 3 + 1 = 3
+    # find left and right limit
+    # TC:O(2N)-> O(N)
+
+    l = 0
+    r = 0
+
+    for i in range(A,B+1):
+        if i == 0:
+            continue
+        if i%K == 0:
+            l = int(i/K)
+            break
+
+    for j in range(B,i-1,-1):
+        if i == 0:
+            continue
+        if j%K == 0:
+            r = int(j/K)
+            break
+
+    if l == 0 and r == 0:
+        return 0
+
+    return r-l+1
