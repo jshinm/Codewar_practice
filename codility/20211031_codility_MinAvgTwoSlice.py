@@ -58,3 +58,41 @@ def solution(A):
                 idx = i
 
     return idx
+
+# Kadane's algorithm using 2/3 window
+# https://stackoverflow.com/questions/21635397/min-average-two-slice-codility
+
+
+# generalized solution without 2/3 window
+# class Solution {
+#     public int solution(int[] A) {
+#         // write your code in Java SE 8
+#             // write your code in Java SE 8
+
+#     float avg = 0f;
+#     int min_index = 0;
+#     int P = 0;
+#     //formula
+
+#     float sums[] = new float[A.length ];
+
+#     //suffix sums
+#     int prefix = 0;
+#     for (int i = 0; i < A.length; i += 1) {
+#         prefix += A[i];
+#         sums[i] += prefix;
+#     }
+#     float min_avg = Float.MAX_VALUE;
+#     for (int i = 1; i < A.length; i++) {
+#         avg = (sums[i] - sums[P] + A[P]) / (i - P + 1);
+#         if (avg < min_avg) {
+#             min_avg = avg;
+#             min_index = P;
+#         }
+#             if (A[i] < min_avg) {
+#             P = i;
+#         }
+#     }
+#     return min_index;
+# }
+#     }
