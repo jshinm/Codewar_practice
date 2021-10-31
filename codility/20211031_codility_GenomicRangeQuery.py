@@ -40,4 +40,18 @@
 
 def solution(S, P, Q):
     # write your code in Python 3.6
-    pass
+    # define impact factor as a dic
+    # get a section of the string from S
+    # check if four nucleotides are in the section
+    # TC: O(N*M)
+    
+    impact = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
+    out = []
+
+    for i, j in zip(P, Q):
+        for nu, im in impact.items():
+            if nu in S[i:j+1]:
+                out.append(im)
+                break
+
+    return out
