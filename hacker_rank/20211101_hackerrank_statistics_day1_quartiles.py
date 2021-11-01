@@ -20,21 +20,6 @@ import sys
 # The function accepts INTEGER_ARRAY arr as parameter.
 #
 
-#!/bin/python3
-
-import math
-import os
-import random
-import re
-import sys
-
-#
-# Complete the 'quartiles' function below.
-#
-# The function is expected to return an INTEGER_ARRAY.
-# The function accepts INTEGER_ARRAY arr as parameter.
-#
-
 def median(arr, N):
     
     if N % 2 == 0:
