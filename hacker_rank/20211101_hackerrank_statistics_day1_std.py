@@ -22,7 +22,12 @@ import sys
 
 def stdDev(arr):
     # Print your answers to 1 decimal place within this function
-    pass
+    # std = sqrt(sum((mean-x)^2)/n)
+    n = len(arr)
+    x_bar = sum(arr)/n
+    tmp = [(x_bar-i)**2 for i in arr]
+
+    print (round(math.sqrt(sum(tmp)/n), 1))
 
 if __name__ == '__main__':
     n = int(input().strip())
