@@ -20,4 +20,31 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # input is a list
+    # simple solution
+    return len(set(A))
+
+def solution(A):
+    # write your code in Python 3.6
+    # input is a list
+    # manual solution
+    # TC: O(N**2) worst
+    chk = []
+
+    for i in A:
+        if i not in chk:
+            chk.append(i)
+
+    return len(chk)
+
+def solution(A):
+    # write your code in Python 3.6
+    # hashmap method
+    # TC: O(N) much faster than searching through the list
+    chk = {}
+
+    for i in A:
+        if i not in chk:
+            chk[i] = 0
+    
+    return len(chk.keys())
