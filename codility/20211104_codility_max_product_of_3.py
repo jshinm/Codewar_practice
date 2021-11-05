@@ -77,6 +77,5 @@ def solution(A):
 
                 if not top or top < tmp:
                     top = tmp
-                    print(n,m,o)
 
     return top
