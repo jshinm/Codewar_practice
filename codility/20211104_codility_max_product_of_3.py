@@ -43,6 +43,7 @@ def solution(A):
     # write your code in Python 3.6
     # find two most negative number and three most positive number at most
     # find all products
+    # TC: O(N)
 
     neg = []
     pos = []
@@ -50,7 +51,7 @@ def solution(A):
     for i in A:
         if len(pos) < 3 and i >= 0:
             pos.append(i)
-        elif len(neg) < 2 and i < 0:
+        elif len(neg) < 3 and i < 0:
             neg.append(i)
         elif i >= 0:
             for n, j in enumerate(pos):
@@ -63,11 +64,14 @@ def solution(A):
                     neg[n] = i
                     break
 
-    if len(neg) == 2:
+    if not pos:
+        num = neg
+    elif len(neg) > 2: #accounting for all negative condition
+        neg.remove(max(neg))
         num = neg + pos
     else:
-        num = pos
-    
+        num = neg + pos
+
     top = None
 
     for i, n in enumerate(num[:-2]):
