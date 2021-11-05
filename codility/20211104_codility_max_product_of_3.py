@@ -44,7 +44,7 @@ def solution(A):
     # find two most negative number and three most positive number at most
     # find all products
     # TC: O(N)
-
+    min_neg = [] #there must be minimum negative and maximum negative and evaluate both
     neg = []
     pos = []
     
@@ -53,6 +53,7 @@ def solution(A):
             pos.append(i)
         elif len(neg) < 3 and i < 0:
             neg.append(i)
+            min_neg.append(i)
         elif i >= 0:
             for n, j in enumerate(pos):
                 if j < i:
@@ -62,24 +63,26 @@ def solution(A):
             for n, j in enumerate(neg):
                 if j > i:
                     neg[n] = i
+                if j < i:
+                    min_neg[n] = i
                     break
 
     if not pos:
-        num = neg
-    elif len(neg) > 2: #accounting for all negative condition
-        neg.remove(max(neg))
-        num = neg + pos
+        nums = neg
+        nums2 = min_neg
     else:
-        num = neg + pos
+        nums = neg + pos
+        nums2 = min_neg + pos
 
     top = None
 
-    for i, n in enumerate(num[:-2]):
-        for j, m in enumerate(num[i+1:-1]):
-            for k, o in enumerate(num[i+2:]):
-                tmp = n*m*o
+    for num in [nums, nums2]:
+        for i, n in enumerate(num[:-2]):
+            for j, m in enumerate(num[i+1:-1]):
+                for k, o in enumerate(num[i+2:]):
+                    tmp = n*m*o
 
-                if not top or top < tmp:
-                    top = tmp
-
+                    if not top or top < tmp:
+                        top = tmp
+    
     return top
