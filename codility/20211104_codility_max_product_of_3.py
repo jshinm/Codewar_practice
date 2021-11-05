@@ -41,4 +41,42 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # find two most negative number and three most positive number at most
+    # find all products
+
+    neg = []
+    pos = []
+    
+    for i in A:
+        if len(pos) < 3 and i >= 0:
+            pos.append(i)
+        elif len(neg) < 2 and i < 0:
+            neg.append(i)
+        elif i >= 0:
+            for n, j in enumerate(pos):
+                if j < i:
+                    pos[n] = i
+                    break
+        elif i < 0:
+            for n, j in enumerate(neg):
+                if j > i:
+                    neg[n] = i
+                    break
+
+    if len(neg) == 2:
+        num = neg + pos
+    else:
+        num = pos
+    
+    top = None
+
+    for i, n in enumerate(num[:-2]):
+        for j, m in enumerate(num[i+1:-1]):
+            for k, o in enumerate(num[i+2:]):
+                tmp = n*m*o
+
+                if not top or top < tmp:
+                    top = tmp
+                    print(n,m,o)
+
+    return top
