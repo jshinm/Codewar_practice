@@ -63,6 +63,8 @@ def solution(A):
             for n, j in enumerate(neg):
                 if j > i:
                     neg[n] = i
+                    break
+            for n, j in enumerate(min_neg):
                 if j < i:
                     min_neg[n] = i
                     break
