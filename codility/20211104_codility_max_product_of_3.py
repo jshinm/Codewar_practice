@@ -88,3 +88,13 @@ def solution(A):
                         top = tmp
     
     return top
+
+# alternatively there are 4 conditions
+# if there are more than 3 pos numbers
+    # 1. 3 positive number (3 largest)
+# if there are 2 pos numbers
+    # 2. 2 smallest product of 2 positive numbers + a smallest negative number
+# if there is 1 pos number
+    # 3. 1 largest product of 2 negative numbers + a largest positive number
+# if there is no pos number
+    # 4. smallest negative number
