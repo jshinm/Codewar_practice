@@ -63,3 +63,42 @@ def solution(A):
                 cnt += 1
 
     return cnt
+
+def solution(A):
+    # write your code in Python 3.6
+    # alternative method
+    # a circle has left and right limit for both of which act as a pair
+    # we can count each circle based on that using two pointers
+    l = []
+    r = []
+    # preset to 1 since actual addition occurs only after the second circle
+    lp = 1 
+    rp = 0
+    # thus the current_overlap starts from 1 as well
+    current_overlap = 1 
+    cnt = 0
+
+    for i, n in enumerate(A): #TC: O(N)
+        l.append(i-n)
+        r.append(i+n)
+
+    # TC: O(N log N)
+    l.sort() 
+    r.sort()
+
+    while lp < len(l):
+
+        # edge case
+        if cnt >= 10**7: 
+            return -1
+
+        # touching is also considered as an overlap as per problem
+        if r[rp] >= l[lp]:
+            cnt += current_overlap
+            current_overlap += 1
+            lp += 1
+        else:
+            current_overlap -= 1
+            rp += 1
+
+    return cnt
