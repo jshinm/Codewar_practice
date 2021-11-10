@@ -32,6 +32,34 @@
 # you can write to stdout for debugging purposes, e.g.
 # print("this is a debug message")
 
+# unordered pair
+# return -1 if # of intersection exceeds 10**7
+# A[J] = (J - A[J], J + A[J]); suggests range
+# count if two ranges fall within wihtout counting their duplicates
+# example cases (11 cases)
+# 0-1, 0-2, 0-4
+# 1-2, 1-3, 1-4, 1-5
+# 2-3, 2-4
+# 3-4
+# 4-5
+
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # brute force method (TLE)
+    rng = []
+    cnt = 0
+
+    for i, n in enumerate(A): #TC: O(N)
+        rng.append((i-n, i+n))
+
+    rng.sort(key=lambda x: x[0]) #TC: O(N log N)
+
+    for i, r in enumerate(rng[:-1]): #TC: O(N^2)
+        for j, s in enumerate(rng[i+1:]):
+            if cnt >= 10**7:
+                return -1
+            
+            if r[1] >= s[0]:
+                cnt += 1
+
+    return cnt
