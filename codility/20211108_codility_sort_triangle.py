@@ -35,4 +35,12 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    A = sorted(A) #merge sort, TC: O(N log N)
+
+    for i, n in enumerate(A[:-2]):
+        if A[i] + A[i+1] > A[i+2] and \
+        A[i+1] + A[i+2] > A[i] and \
+        A[i+2] + A[i] > A[i+1]:
+            return 1
+
+    return 0
