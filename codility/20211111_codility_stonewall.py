@@ -22,4 +22,25 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # rising adds one block
+    # falling adds one block only if it doesn't connect with the left rising side
+    # plateu doesn't add any blocks
+
+    left = [] #left rising sides
+    cnt = 0
+
+    for i, h in enumerate(H):
+        if not left: #initialize
+            left.append(h)
+            cnt += 1
+            continue
+        
+        if h > H[i-1]: #if rising
+            cnt += 1   #add a block
+            left.append(h)
+        elif h < H[i-1]: #if falling
+            if h not in left: #if height matches left rising side
+                cnt += 1      #add a block
+            left = [i for i in left if i < h] #update left rising sides
+
+    return cnt
