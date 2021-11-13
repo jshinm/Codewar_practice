@@ -20,7 +20,7 @@
 # N is an integer within the range [1..100,000];
 # each element of array H is an integer within the range [1..1,000,000,000].
 
-def solution(A):
+def solution(H):
     # write your code in Python 3.6
     # rising adds one block
     # falling adds one block only if it doesn't connect with the left rising side
@@ -34,13 +34,21 @@ def solution(A):
             left.append(h)
             cnt += 1
             continue
-        
+
         if h > H[i-1]: #if rising
             cnt += 1   #add a block
             left.append(h)
         elif h < H[i-1]: #if falling
-            if h not in left: #if height matches left rising side
+            if h not in left: #if there's no matching left side
                 cnt += 1      #add a block
-            left = [i for i in left if i < h] #update left rising sides
+            left = [i for i in left if i < h]
+
+            if flag:
+                cnt += 1
+
+            left = temp
+        else:
+            continue
+        left.append(h) #if rise or fall, left side is added
 
     return cnt
