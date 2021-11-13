@@ -20,4 +20,20 @@
 
 def solution(S):
     # write your code in Python 3.6
-    pass
+    # check queue
+
+    lst = []
+
+    for c in S:
+        if c == ')':
+            if lst:
+                lst.pop()
+            else:
+                return 0
+        else:
+            lst.append(c)
+        
+    if not lst:
+        return 1
+    else:
+        return 0
