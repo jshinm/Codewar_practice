@@ -43,6 +43,21 @@ def solution(H):
                 cnt += 1      #add a block
             left = [i for i in left if i < h]
 
+            # O(N) instead O(2N); doesn't much affect TC
+            # flag = False
+            # eqal = False
+            # temp = []
+            # for j in left: #update left rising sides
+            #     if j < h: #if 
+            #         flag = True
+            #         temp.append(j)
+            #     elif j > h: 
+            #         flag = True
+            #     else: #if right side matches left side, don't count
+            #         eqal = True
+            # if flag and not eqal:
+            #     cnt += 1
+
             if flag:
                 cnt += 1
 
