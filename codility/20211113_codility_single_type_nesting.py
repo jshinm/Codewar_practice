@@ -21,6 +21,7 @@
 def solution(S):
     # write your code in Python 3.6
     # check queue
+    # TC:O(N)
 
     lst = []
 
