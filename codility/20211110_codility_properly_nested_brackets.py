@@ -18,6 +18,27 @@
 # N is an integer within the range [0..200,000];
 # string S consists only of the following characters: "(", "{", "[", "]", "}" and/or ")".
 
-def solution(A):
+def solution(S):
     # write your code in Python 3.6
-    pass
+    # queue and pop as pass through
+    # characters stored in hashmap
+    # TC:O(N)
+
+    dic = {'}': '{', ']': '[', ')': '('}
+    que = []
+
+    for c in S:
+        if c in dic and que:
+            if que[-1] == dic[c]:
+                que.pop()
+            else:
+                return 0
+        elif c in dic and not que:
+            return 0
+        else:
+            que.append(c)
+
+    if que:
+        return 0
+    else:
+        return 1
