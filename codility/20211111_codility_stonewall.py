@@ -22,28 +22,4 @@
 
 def solution(A):
     # write your code in Python 3.6
-    # the only encounter case is if B[N] > B[N+1]
-    # one fish gets eaten unless they are of same size
-    # pop list until encounter condition is met
-    # worst TC:O(2N)
-
-    i0 = 0
-    i1 = 1
-
-    while (i0 != len(A)-1):
-        if B[i0] > B[i1]:
-            if A[i0] > A[i1]: #remove i1 and continue
-                A.pop(i1) #splicing is much slower than pop method
-                B.pop(i1)
-            elif A[i0] < A[i1]: #remove i0 and backtrack once
-                A.pop(i0) #pop(0) would yield TC:O(N)
-                B.pop(i0) #in which case it's faster if reversed
-                i0 -= 1   #collections deque is advised
-                i1 -= 1
-            else: #no removal and continue
-                i0 += 1
-                i1 += 1
-        else: #continue
-            i0 += 1
-            i1 += 1
-    return len(A)
+    pass
