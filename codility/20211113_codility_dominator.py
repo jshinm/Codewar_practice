@@ -30,4 +30,24 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # count with hashmap {N:(idx, cnt)}
+    # return index if cnt > len(A)/2
+
+    dic = {}
+    N = len(A)/2
+
+    if len(A) == 1: #for edge case for single item
+        return 0
+
+    for i, n in enumerate(A):
+        if n not in dic:
+            dic[n] = (i, 1)
+        else:
+            idx, temp_cnt = dic[n]
+            temp_cnt += 1
+            if temp_cnt > N:
+                return idx
+            else:
+                dic[n] = (idx, temp_cnt)
+
+    return -1
