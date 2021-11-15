@@ -78,8 +78,8 @@ def solution(A):
 
         argmax_l = argmax(ldic)
         argmax_r = argmax(rdic)
-
-        if argmax_l and argmax_r and argmax_l == argmax_r:
+        
+        if argmax_l != None and argmax_r != None and argmax_l == argmax_r:
             cnt += 1
 
     return cnt
