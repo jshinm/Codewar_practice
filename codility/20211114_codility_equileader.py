@@ -44,4 +44,39 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # brute force would be to take each window such that
+    # two distinct windows are 0:i and i:N
+    # most frequent item can be found via dictionary counting
+    # TC would be O(N^2)
+
+    cnt = 0
+
+    def argmax(dic):
+        m = 0
+        flag = False
+
+        for k, v in dic.items():
+            if v > m:
+                m = v
+                key = k
+                flag = False
+            elif v == m:
+                flag = True
+        
+        if flag:
+            return None
+        else:
+            return key
+
+    for i in range(len(A)-1):
+
+        l = A[:i+1]
+        r = A[i+1:]
+
+        ldic = {i: l.count(i) for i in l}
+        rdic = {i: r.count(i) for i in r}
+
+        if argmax(ldic) == argmax(rdic):
+            cnt += 1
+
+    return cnt
