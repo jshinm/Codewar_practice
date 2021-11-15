@@ -76,7 +76,10 @@ def solution(A):
         ldic = {i: l.count(i) for i in l}
         rdic = {i: r.count(i) for i in r}
 
-        if argmax(ldic) == argmax(rdic):
+        argmax_l = argmax(ldic)
+        argmax_r = argmax(rdic)
+
+        if argmax_l and argmax_r and argmax_l == argmax_r:
             cnt += 1
 
     return cnt
