@@ -36,4 +36,20 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # brute force would be to run two loops and check for every combination
+    # TC: O(n log n)
+
+    maxval = None
+
+    for i, n in enumerate(A[:-1]):
+        for m in A[i+1:]:
+            if not maxval or maxval < m-n:
+                maxval = m-n
+                
+    if not maxval:
+        return 0
+    
+    if maxval < 0:
+        return 0
+
+    return maxval
