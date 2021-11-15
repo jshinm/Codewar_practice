@@ -37,7 +37,7 @@
 def solution(A):
     # write your code in Python 3.6
     # brute force would be to run two loops and check for every combination
-    # TC: O(n log n)
+    # TC: O(n^2)
 
     maxval = None
 
@@ -53,3 +53,46 @@ def solution(A):
         return 0
 
     return maxval
+
+def solution(A):
+    # write your code in Python 3.6
+    # sweep once and find max and min
+    # if max_i > min_i, this is maximal loss
+    # thus must find max that occurs later than min occurring
+
+    # find min, max in a single pass
+    # if min_i > min_i+1, update min, compute diff
+    # if min_i < min_i+1 and max_i > max_i+1, update max
+    # TC:O(N)
+
+    if len(A) < 2:
+        return 0
+
+    out = [] #list of difference
+    dic = {'max': None, 'min': A[0]}
+
+    for i, n in enumerate(A[1:]):
+        if dic['min'] > n:
+            if dic['max']:
+                out.append(dic['max'] - dic['min'])
+            dic['min'] = n
+            dic['max'] = None
+        elif dic['min'] < n:
+            if dic['max']:
+                if dic['max'] < n:
+                    dic['max'] = n
+            else:
+                dic['max'] = n
+
+    if dic['max'] != None:
+        out.append(dic['max'] - dic['min'])
+
+    if not out:
+        return 0
+
+    out = max(out)
+
+    if out < 0:
+        return 0
+    else:
+        return out
