@@ -24,4 +24,13 @@
 
 def solution(A):
     # write your code in Python 3.6
-    pass
+    # double max solution
+    # TC:O(N)
+    maxval = curval = A[0]
+
+    for i in A[1:]:
+
+        curval = max(curval + i, i)
+        maxval = max(curval, maxval)
+
+    return maxval
