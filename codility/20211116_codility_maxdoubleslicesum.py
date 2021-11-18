@@ -63,8 +63,36 @@ def solution(A):
     # alternatively take only the positive number on the left and max on the right
     # this doesn't work with simple [1,2,3,4,5]
 
-    # the following only scores 50%
-    
+    # the previous code only scores 50%
+
+    # the max on the left may not yield the max of both left and right combined
+    # thus all possible combination should be acquired
+    # TC:O(2N)
+
+    #zero is to account for the dividier between lmax and rmax 
+    lmax = [0]
+    rmax = [0]
+    tmax = []
+
+    cmax = 0 #initialize current max
+
+    for i, n in enumerate(A[1:-2]):
+        cmax = max(0, cmax+n)
+        lmax.append(max(0, cmax))
+
+    cmax = 0
+
+    for i, n in enumerate(A[len(A)-2:1:-1]):
+        cmax = max(0, cmax+n)
+        rmax.append(max(0, cmax))
+
+    for n, m in zip(lmax, rmax[::-1]):
+        tmax.append(max(0, n+m))
+
+    return max(tmax)
+
+    # previous code
+def solution(A):
     out = []
 
     if len(A) < 4:
