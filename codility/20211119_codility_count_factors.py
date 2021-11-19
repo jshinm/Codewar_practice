@@ -19,4 +19,22 @@
 
 def solution(N):
     # write your code in Python 3.6
-    pass
+    # multiples of 2,3,5 + 1 and number itself
+    # TC: O(N)
+
+    if N == 1:
+        return N
+
+    out = [1]
+    prime = []
+
+    for i in [2,3,5]:
+        if N % i == 0:
+            prime.append(i)
+
+    for i in prime:
+        for j in range(i, N, i):
+            if N % j == 0:
+                out.append(j)
+
+    return len(set(out)) + 1
