@@ -18,9 +18,25 @@
 # print("this is a debug message")
 
 def solution(N):
+    # find symmetric divisor sqrt(N)
+    # TC: O(sqrt(N))
+    cnt = 0
+    sqrtN = N**(1/2)
+
+    for i in range(1, int(sqrtN)+1):
+        if N % i == 0:
+            if i < sqrtN:
+                cnt += 2
+            else:
+                cnt += 1
+
+    return cnt
+
+def solution(N):
     # write your code in Python 3.6
     # multiples of 2,3,5 + 1 and number itself
-    # TC: O(N)
+    # kind of brute force stytle
+    # TC: O(N/2)
     out = [1, N]
     prime = []
 
