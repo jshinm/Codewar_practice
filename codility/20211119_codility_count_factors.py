@@ -21,11 +21,7 @@ def solution(N):
     # write your code in Python 3.6
     # multiples of 2,3,5 + 1 and number itself
     # TC: O(N)
-
-    if N == 1:
-        return N
-
-    out = [1]
+    out = [1, N]
     prime = []
 
     for i in [2,3,5]:
@@ -37,4 +33,4 @@ def solution(N):
             if N % j == 0:
                 out.append(j)
 
-    return len(set(out)) + 1
+    return len(set(out))
