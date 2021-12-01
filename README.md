@@ -1,3 +1,2 @@
 # Coding Practice
-
-Daily coding exercise from various platforms
+Raw codes from coding exercise which is translated into an individual markdown organized in [project_binder](https://github.com/jshinm/project-binder).
