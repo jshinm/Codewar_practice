@@ -14,6 +14,31 @@ class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
+        
+        1. linear search to find the coordinates of the zeroes
+        2. get the list of rows and cols that needs to be zeroed
+        3. change matrix in-place
+        
+        TC:O(M*N), SC:O(M+N)
         """
-        pass
+        
+        nrow = len(matrix)
+        ncol = len(matrix[0])
+        
+        irow = []
+        icol = []
+        
+        for i, row in enumerate(matrix):
+            for j, num in enumerate(row):
+                if num == 0:
+                    irow.append(i)
+                    icol.append(j)
+          
+        for i in set(irow):
+            for j in range(ncol):
+                matrix[i][j] = 0
+                
+        for i in set(icol):
+            for j in range(nrow):
+                matrix[j][i] = 0
 ```
