@@ -35,8 +35,10 @@ class Solution:
         
         [0,3,5],[3,5,10],[5,9,10],[9,10,12]
         
-        edge case: if t.length > s.length, return ''
+        edge case1: if t.length > s.length, return ''
         edge case2: if t.length == s.length, check if t E s
+        edge case3: edge case for the following two cases
+        s = "abbbb", t = "aa" AND s = "ab", t = "a"
         '''
         #edge case1
         if len(t) > len(s):
@@ -101,10 +103,16 @@ class Solution:
 
                     if min_len > tmax-tmin:
                         min_len = tmax-tmin
-                        iout = (tmin, tmax) #temp save of current sequence
+                        iout = (tmin, tmax) #export range
         
-        if iout[0] != iout[1]:
-            return s[iout[0]:iout[1]+1] #translate index into char
-        else:
-            return ''
-```
+        #edge case 3
+        ss = list(s)
+    
+        for c in list(t):
+            if c in ss:
+                ss.remove(c)
+            else:
+                return ''
+        
+        #all else return output
+        return s[iout[0]:iout[1]+1] #translate index into char
