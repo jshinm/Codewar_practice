@@ -38,7 +38,6 @@ class Solution:
         edge case: if t.length > s.length, return ''
         edge case2: if t.length == s.length, check if t E s
         '''
-        
         #edge case1
         if len(t) > len(s):
             return ''
@@ -52,7 +51,7 @@ class Solution:
             slst.sort()
             
             if slst == tlst:
-                return t
+                return s
             else:
                 return ''
         
@@ -61,7 +60,6 @@ class Solution:
         dmap = {} #hashmap for duplicates
         min_key = '' #key for smallest number
         min_len = len(s)
-        out = '' #char output
         done = False
         
         for i, c in enumerate(s):
@@ -81,9 +79,8 @@ class Solution:
             tmp = [] #temp sequence of indices
             min_num = len(s)+1 #initialize current smallest number
             
-            for c, n in cmap.items():
-                for r in range(dmap[c]+1): #when repeating char exists
-                    print(c,n,r)
+            for r in range(dmap[c]+1): #when repeating char exists
+                for c, n in cmap.items():
                     if n+1+r > len(imap[c]):
                         done = True
                         break
@@ -93,20 +90,21 @@ class Solution:
                         min_key = c
 
                     tmp.append(imap[c][n+r]) #store index of each char from s
-            
-            if not done:
-                try:
-                    cmap[min_key] += 1 #increase count
-                except:
-                    return ''
-                
-                tmin, tmax = min(tmp), max(tmp)
 
-                if min_len > tmax-tmin:
-                    min_len = tmax-tmin
-                    iout = (tmin, tmax) #temp save of current sequence
-                
-        out = s[iout[0]:iout[1]+1] #translate index into char
+                if not done:
+                    try:
+                        cmap[min_key] += 1 #increase count
+                    except:
+                        return ''
+
+                    tmin, tmax = min(tmp), max(tmp)
+
+                    if min_len > tmax-tmin:
+                        min_len = tmax-tmin
+                        iout = (tmin, tmax) #temp save of current sequence
         
-        return out
+        if iout[0] != iout[1]:
+            return s[iout[0]:iout[1]+1] #translate index into char
+        else:
+            return ''
 ```
