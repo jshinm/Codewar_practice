@@ -36,10 +36,25 @@ class Solution:
         [0,3,5],[3,5,10],[5,9,10],[9,10,12]
         
         edge case: if t.length > s.length, return ''
+        edge case2: if t.length == s.length, check if t E s
         '''
-        #edge case
+        
+        #edge case1
         if len(t) > len(s):
             return ''
+        
+        #edge case2
+        elif len(t) == len(s):
+            tlst = list(t)
+            slst = list(s)
+            
+            tlst.sort()
+            slst.sort()
+            
+            if slst == tlst:
+                return t
+            else:
+                return ''
         
         imap = {} #hashmap for indexing
         cmap = {} #hashmap for tracking counts
@@ -68,6 +83,7 @@ class Solution:
             
             for c, n in cmap.items():
                 for r in range(dmap[c]+1): #when repeating char exists
+                    print(c,n,r)
                     if n+1+r > len(imap[c]):
                         done = True
                         break
