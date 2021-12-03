@@ -43,6 +43,7 @@ class Solution:
         
         imap = {} #hashmap for indexing
         cmap = {} #hashmap for tracking counts
+        dmap = {} #hashmap for duplicates
         min_key = '' #key for smallest number
         min_len = len(s)
         out = '' #char output
@@ -55,22 +56,27 @@ class Solution:
                 imap[c] = [i]
                 cmap[c] = 0
                 
+        for c in t:
+            if c not in dmap:
+                dmap[c] = 0
+            else:
+                dmap[c] += 1
+                
         while not done:
             tmp = [] #temp sequence of indices
             min_num = len(s)+1 #initialize current smallest number
             
             for c, n in cmap.items():
-                if n+1 > len(imap[c]):
-                    done = True
-                    break
-                    
-                if min_num > imap[c][n]:
-                    min_num = imap[c][n]
-                    min_key = c
-                    
-                tmp.append(imap[c][n]) #store index of each char from s
-            
-            # print(s, t, min_num, min_key)
+                for r in range(dmap[c]+1): #when repeating char exists
+                    if n+1+r > len(imap[c]):
+                        done = True
+                        break
+
+                    if min_num > imap[c][n+r]:
+                        min_num = imap[c][n+r]
+                        min_key = c
+
+                    tmp.append(imap[c][n+r]) #store index of each char from s
             
             if not done:
                 try:
@@ -82,9 +88,9 @@ class Solution:
 
                 if min_len > tmax-tmin:
                     min_len = tmax-tmin
-                    iout = (tmax, tmin) #temp save of current sequence
-
-        out = s[tmin:tmax+1] #translate index into char
+                    iout = (tmin, tmax) #temp save of current sequence
+                
+        out = s[iout[0]:iout[1]+1] #translate index into char
         
         return out
 ```
