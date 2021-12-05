@@ -16,8 +16,7 @@ Constraints:
 * 1 <= word.length <= 15
 * board and word consists of only lowercase and uppercase English letters.
 
-## Linear Approach
-Doesn't account for multiple pathways
+## Recursive Solution
 
 ```python
 class Solution:
@@ -29,7 +28,57 @@ class Solution:
             a. no boundary
             b. no visited cell
         3. make sure when 1st letter found move fwd and bwd if last found
+        TC:O(M*N)
         '''        
+        def searching(board, inner_cnt, visited, match, state=None):
+            while match:
+                moved = False
+                inner_m, inner_n = inner_cnt // n, inner_cnt % n
+                #left (inner_n - 1 >= 0)
+                if inner_n - 1 >= 0 and inner_cnt - 1 not in visited:
+                    if board[inner_m][inner_n-1] == match[0]:
+                        inner_cnt -= 1
+                        visited.append(inner_cnt)
+                        match = match[1:] 
+                        moved = True
+
+                inner_m, inner_n = inner_cnt // n, inner_cnt % n
+                #right (inner_n + 1 <= n)
+                if inner_n + 1 < n and inner_cnt + 1 not in visited:
+                    if board[inner_m][inner_n+1] == match[0]:
+                        inner_cnt += 1
+                        visited.append(inner_cnt)
+                        match = match[1:]                                
+                        moved = True
+
+                inner_m, inner_n = inner_cnt // n, inner_cnt % n
+                #up (inner_m - 1 >= 0)
+                if inner_m - 1 >= 0 and inner_cnt - n not in visited:
+                    if board[inner_m-1][inner_n] == match[0]:
+                        inner_cnt -= n
+                        visited.append(inner_cnt)
+                        match = match[1:]
+                        moved = True
+
+                inner_m, inner_n = inner_cnt // n, inner_cnt % n
+                #down (inner_m + 1 <= m)
+                if inner_m + 1 < m and inner_cnt + n not in visited:
+                    if board[inner_m+1][inner_n] == match[0]:
+                        inner_cnt += n
+                        visited.append(inner_cnt)
+                        match = match[1:]                         
+                        moved = True
+
+                if moved:
+                    return searching(board, inner_cnt, visited, match)
+                else: #if conditions not met, exit loop
+                    break
+                                
+            if match == []:
+                return True
+            else:
+                return False
+                
         visited = []
         fwd = word
         bwd = word[::-1]
@@ -45,44 +94,9 @@ class Solution:
                     visited = [cnt]
                     match = list(fwd[1:]) if c == fwd[0] else list(bwd[1:])
                     
-                    while match:
-                        inner_m, inner_n = inner_cnt // n, inner_cnt % n
-                        #left (inner_n - 1 >= 0)
-                        if inner_n - 1 >= 0 and inner_cnt - 1 not in visited:
-                            if board[inner_m][inner_n-1] == match[0]:
-                                inner_cnt -= 1
-                                visited.append(inner_cnt)
-                                match = match[1:]                                
-                                continue
-                                
-                        #right (inner_n + 1 <= n)
-                        if inner_n + 1 < n and inner_cnt + 1 not in visited:
-                            if board[inner_m][inner_n+1] == match[0]:
-                                inner_cnt += 1
-                                visited.append(inner_cnt)
-                                match = match[1:]                                
-                                continue
-                                
-                        #up (inner_m - 1 >= 0)
-                        if inner_m - 1 >= 0 and inner_cnt - n not in visited:
-                            if board[inner_m-1][inner_n] == match[0]:
-                                inner_cnt -= n
-                                visited.append(inner_cnt)
-                                match = match[1:]
-                                continue
-                                
-                        #down (inner_m + 1 <= m)
-                        if inner_m + 1 < m and inner_cnt + n not in visited:
-                            if board[inner_m+1][inner_n] == match[0]:
-                                inner_cnt += n
-                                visited.append(inner_cnt)
-                                match = match[1:]                         
-                                continue
-                        
-                        #if conditions not met, exit loop
-                        break
-                        
-                    if match == []:
+                    result = searching(board, inner_cnt, visited, match)
+
+                    if result:
                         return True
         
         #if not found, return False
