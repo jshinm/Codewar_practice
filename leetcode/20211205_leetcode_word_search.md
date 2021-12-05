@@ -16,10 +16,15 @@ Constraints:
 * 1 <= word.length <= 15
 * board and word consists of only lowercase and uppercase English letters.
 
+## DFS Solution
+```python
+```
+
 ## Recursive Solution
+This doesn't account for every direction at a given point. For instance, it only follows left, right, up, down sequence in that if right and up is found to be the match, then only the sequential possibilities invoked by visiting right will be observed.
 
 ```python
-class Solution:    
+class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         '''
         linear search to find a seed then search through its adjacent item
