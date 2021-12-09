@@ -17,7 +17,7 @@ Constraints:
 * board and word consists of only lowercase and uppercase English letters.
 
 ## DFS Solution
-Exerpted from LC created by OldCodingFarmer
+Excerpted from LC created by OldCodingFarmer
 ```python
 def exist(self, board, word):
     if not board:
