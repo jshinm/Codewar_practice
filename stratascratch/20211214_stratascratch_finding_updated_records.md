@@ -13,4 +13,15 @@ import pandas as pd
 
 # Start writing code
 ms_employee_salary.head()
+
+# find current salary of each employee (always increase)
+# output - id, first_name, last_name, dep_ID, current_salary
+# order by id asc
+
+# 1. group by id and max(salary)
+# 2. order by id
+
+df = ms_employee_salary.groupby('id').max().reset_index()
+
+df = df.sort_values(by='id')
 ```
