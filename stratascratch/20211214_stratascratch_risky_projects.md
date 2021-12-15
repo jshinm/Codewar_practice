@@ -17,4 +17,46 @@ import pandas as pd
 
 # Start writing code
 linkedin_projects.head()
+linkedin_emp_projects.head()
+linkedin_employees.head()
+
+# identify risk projects for overbudget
+# overbudget is when cost of all employee for the project > the budget for the project
+# prorate salary (ie match the salary according to the duration of the project)
+# output - project_name, project_budget, prorated_total_expenses of all employee
+
+# 1. join emp and employee tables
+# 2. filter columns
+# 3. group by project_id then sum(salary)
+# 4. join result with linkedin projects
+# 5. filter columns
+# 6. new bool column (total prorate > budget)
+# 7. filter for bool == true
+
+# merge two tables
+df = pd.merge(linkedin_emp_projects, linkedin_employees, left_on='emp_id', right_on='id')
+
+# filter columns
+df = df[['project_id', 'salary']]
+
+# get total salary
+df = df.groupby('project_id').sum().reset_index()
+
+# merge result with project table
+df_all = pd.merge(df, linkedin_projects, left_on='project_id', right_on='id')
+
+# get the time diff
+df_all['dt'] = df_all['end_date'] - df_all['start_date'] #/ (3600*24)
+df_all['dt'] = df_all['dt'].apply(lambda x:x.days / 365)
+
+# get prorated salary
+df_all['psal'] = df_all['salary'] * df_all['dt']
+
+# conditional filter
+df_all = df_all.query('psal > budget')[['title', 'budget', 'psal']]
+
+# round to the next dollar amount
+df_all['psal'] = round(df_all.psal)
+
+df_all
 ```
