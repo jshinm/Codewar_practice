@@ -46,7 +46,7 @@ df = df.groupby('project_id').sum().reset_index()
 df_all = pd.merge(df, linkedin_projects, left_on='project_id', right_on='id')
 
 # get the time diff
-df_all['dt'] = df_all['end_date'] - df_all['start_date'] #/ (3600*24)
+df_all['dt'] = df_all['end_date'] - df_all['start_date']
 df_all['dt'] = df_all['dt'].apply(lambda x:x.days / 365)
 
 # get prorated salary
