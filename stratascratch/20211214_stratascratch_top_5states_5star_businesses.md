@@ -13,4 +13,31 @@ import pandas as pd
 
 # Start writing code
 yelp_business.head()
+
+# find top 5 states with the most number of 5 star business
+# output - state_name, number of 5-star business
+# order by descending order of the number of 5-star
+# if multiple winners, sort by alphabetical order
+
+# 1. filter out columns and for stars == 5
+# 2. group by state and count(star)
+# 3. sort by sum desc then sort by state alpha
+
+df = yelp_business[['state', 'stars']]
+df = df[df['stars'] == 5]
+
+df = df.groupby('state').count()
+
+df = df.sort_values(by=['stars', 'state'], ascending=[False, True]).reset_index()
+
+slst = list(df.stars.unique()[:5])
+
+df = df[df['stars'].isin(slst)]
+out = df.copy()
+
+for i in slst[::-1]:
+    if len(out[out.stars != i]) > 5:
+        out = out[out.stars != i]
+    else:
+        break
 ```
