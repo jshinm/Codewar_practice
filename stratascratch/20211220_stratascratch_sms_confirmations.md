@@ -15,4 +15,29 @@ import pandas as pd
 
 # Start writing code
 fb_sms_sends.head()
+# fb_confirmers.head()
+
+# fb_sms_sends contains invalid confirmation records
+# fb_confirmers contains valid confirmation records
+# calculate the % of confirmed sms text
+
+# 1. filter out `fb_confirmers` and `fb_sms_sends` for date == 8/4/20
+# 2. merge with `fb_sms_sends`
+# 3. count all counts of unique phone #
+# 4. count all confirmed counts
+# 5. compute percentage
+
+dfc = fb_confirmers.query('date == "2020-08-04"')
+dfs = fb_sms_sends.query('ds == "2020-08-04"')
+
+dfs = dfs[~dfs.isin(['confirmation','friend_request'])].dropna() #all counts of message
+
+df_merge = pd.merge(dfc, dfs, how='right', on=['phone_number']) #there are matched and unmatched phone #
+
+numer = (~df_merge['date'].isna()).sum() # number of valid count
+denom = len(df_merge['date']) # number of all 
+
+ans = (numer / denom) * 100
+
+#output: there are 1 out of 5 phone number that were messaged that were also confirmed on 8-4-2020
 ```
