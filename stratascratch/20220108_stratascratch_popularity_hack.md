@@ -16,4 +16,18 @@ import pandas as pd
 
 # Start writing code
 facebook_employees.head()
+
+# find the avg popularity of the hack per office loc
+# output the loc along with the avg popularity
+
+# 1. filter table for the col of interest
+# 2. join table by `employee_id`
+# 3. groupby location - agg(avg(popularity))
+
+dfA = facebook_employees[['id', 'location']]
+dfB = facebook_hack_survey[['employee_id', 'popularity']]
+
+out = pd.merge(dfA, dfB, left_on='id', right_on='employee_id')
+out = out.groupby('location').mean().reset_index()
+out = out[['location', 'popularity']]
 ```
