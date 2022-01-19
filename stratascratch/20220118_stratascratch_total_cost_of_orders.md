@@ -25,7 +25,7 @@ customers.head()
 df1 = orders.groupby('cust_id').sum().reset_index()
 df1 = df1[['cust_id', 'total_order_cost']]
 df2 = customers
-# 
+
 df_out = pd.merge(df1, df2, left_on='cust_id', right_on='id')
 df_out = df_out[['id', 'first_name', 'total_order_cost']]
 df_out = df_out.sort_values('first_name')
