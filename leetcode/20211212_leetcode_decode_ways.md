@@ -59,6 +59,7 @@ Constraints:
 * s contains only digits and may contain leading zero(s).
 
 ## Solution
+The following solution is DP method using memoization where progress is being tracked in an array.
 
 ```python
 class Solution:
@@ -80,5 +81,17 @@ class Solution:
         # for the 2 digit check
         # if the digit is between 10 < s[i] < 27, returns l[i-2] otherwise 0
         # ultimately return l[-1]
-        pass
+        
+        if s is None or s[0] == '0':
+            return 0
+        
+        l = [1] * len(s)
+        
+        for i in range(1, len(s)):
+            # 1-step memoization
+            l[i] = l[i-1] if int(s[i]) != 0 else 0 
+            # 2-step memoization
+            l[i] += l[i-2 if i > 1 else 0] if 9 < int(s[i-1:i+1]) < 27 else 0 
+            
+        return l[-1]
 ```
