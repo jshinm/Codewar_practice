@@ -59,9 +59,26 @@ Constraints:
 * s contains only digits and may contain leading zero(s).
 
 ## Solution
-Excerpted from LC created by OldCodingFarmer
+
 ```python
 class Solution:
     def numDecodings(self, s: str) -> int:
+        # inefficient method
+        # for 3 digits, the possible combinations are
+        # 1-1-1, 1-2, 2-1
+        # for each combination, determine if string return valid conversion
+        # this is finding all possible combination that sum up to the number of digits
+        
+        # DP method
+        # make a list of possible combination at ith position, then return the last count at the list
+        # check digit length of [1,2] at ith position
+        # example of this is as follows
+        # for s = '3442'
+        # create a list such that l = [1] * len(s)
+        # at i, do 1 and 2 digit check
+        # if the digit is between 0 < s[i] < 10, returns l[i-1] otherwise 0
+        # for the 2 digit check
+        # if the digit is between 10 < s[i] < 27, returns l[i-2] otherwise 0
+        # ultimately return l[-1]
         pass
 ```
