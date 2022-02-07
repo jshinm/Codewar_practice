@@ -16,4 +16,23 @@ import pandas as pd
 
 # Start writing code
 customers.head()
+
+# order details by Jill and Eva (first name)
+# output - order_date, details, cost, firstname
+# order by cust_id in ascending order
+
+# 1. find the user from `customers`
+# 2. select col of interest
+# 3. join cust and orders
+# 4. order by cust_id
+
+dfc = customers[['id', 'first_name']]
+dfo = orders[['cust_id', 'order_date', 'order_details', 'total_order_cost']]
+
+
+dfc = dfc[dfc.apply(lambda x: x.first_name in ['Jill', 'Eva'], axis=1)]
+
+df = pd.merge(dfc, dfo, left_on=['id'], right_on=['cust_id'])
+
+df[['order_date', 'order_details', 'total_order_cost', 'first_name']]
 ```
