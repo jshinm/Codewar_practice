@@ -12,6 +12,15 @@ Expected Output Type: pandas.DataFrame
 # Import your libraries
 import pandas as pd
 
-# Start writing code
-employee.head()
+# employee w/ highest salary per dept
+# output - dept name, first name, corresponding salary
+
+# 1. filter col
+# 2. group by dept
+# 3. filter highest salary per dept only
+
+# groupby followed by max does not return right records
+df = employee[['first_name', 'department', 'salary']]
+df = df.groupby('department', as_index=False).salary.max() #as_index replaces reset_index()
+df.merge(employee, how='left', on=['department', 'salary'])[['department', 'salary', 'first_name']]
 ```
