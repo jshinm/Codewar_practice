@@ -27,4 +27,10 @@ dfb = lyft_users.copy()
 
 dft = pd.merge(dfa, dfb, left_on='user_id', right_on='id')[['user_id', 'distance','name']]
 # dft.groupby('name').sum()
+
+dft = dfa.groupby('user_id').sum().reset_index()
+dft = pd.merge(dft, dfb, left_on='user_id', right_on='id')[['user_id', 'distance','name']]
+
+dft['rank'] = dft['distance'].rank(method='dense', ascending=False)
+dft.sort_values('rank').query('rank < 11')
 ```
