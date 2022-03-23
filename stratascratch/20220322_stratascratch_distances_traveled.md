@@ -20,13 +20,9 @@ import pandas as pd
 # 4. get first 10
 
 # Start writing code
-lyft_rides_log.head()
 
 dfa = lyft_rides_log.copy()[['user_id','distance']]
 dfb = lyft_users.copy()
-
-dft = pd.merge(dfa, dfb, left_on='user_id', right_on='id')[['user_id', 'distance','name']]
-# dft.groupby('name').sum()
 
 dft = dfa.groupby('user_id').sum().reset_index()
 dft = pd.merge(dft, dfb, left_on='user_id', right_on='id')[['user_id', 'distance','name']]
