@@ -20,10 +20,10 @@ Expected Output Type: pandas.DataFrame
 import pandas as pd
 
 # Start writing code
-dfA = fb_comments_count#[['user_id',  'number_of_comments']]
+dfA = fb_comments_count
 dfB = fb_active_users[['user_id', 'country']]
 
-df_tmp = pd.merge(dfA, dfB, on='user_id')#[['country', ,'number_of_comments']]
+df_tmp = pd.merge(dfA, dfB, on='user_id')
 df_tmp['year'] = df_tmp.created_at.apply(lambda x: x.year)
 df_tmp['month'] = df_tmp.created_at.apply(lambda x: x.month)
 df_tmp
@@ -31,11 +31,11 @@ df_out = df_tmp.groupby(['country', 'year', 'month']).sum().reset_index()
 
 df_out_2019 = df_out.query('year == 2019 and month == 12')
 df_out_2019['rank19'] = df_out_2019.number_of_comments.rank(method='dense')
-df_out_2019 = df_out_2019#[['country', 'rank19']]
+df_out_2019 = df_out_2019[['country', 'rank19']]
 
 df_out_2020 = df_out.query('year == 2020 and month == 1')
 df_out_2020['rank20'] = df_out_2020.number_of_comments.rank(method='dense')
-df_out_2020 = df_out_2020#[['country', 'rank20']]
+df_out_2020 = df_out_2020[['country', 'rank20']]
 
 #returns no row - we can see that there aren't countries that rose in rank within the overlapping country
 pd.merge(df_out_2019, df_out_2020, on='country', how='inner').query('rank19 > rank20')['country']
